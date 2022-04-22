@@ -8,6 +8,7 @@ const UseEffectAPI = () => {
 
   //   console.log(users)
   const filterItemNew = (category, users) => {
+    console.log("test")
     const updatedList = users.filter((curElem) => {
       return curElem.team === category;
     });
@@ -23,7 +24,7 @@ const UseEffectAPI = () => {
       const uniqueList = [
         ...new Set(
           data.data.map((curElem) => {
-              console.log(curElem)
+              // console.log(curElem)
             return curElem.team;
           })
         ),
