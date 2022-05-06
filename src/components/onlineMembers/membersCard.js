@@ -1,32 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
-const GithubUsers = ({ users, menuList, filterItem, newUsers }) => {
-  // console.log(filterItem)
+const GithubUsers = ({ newUsersLatest }) => {
+  const [cur_section, setCurSection] = useState("Niagara Kings");
+
+  const activeClass = (team) =>{
+    setCurSection(team[0].team);
+  }
+
   return (
     <div>
       <div className="container-fluid mt-5">
         <div className="row text-center">
           <div className="accordion">
             <div className="accordion-item">
-              {menuList.map((curElem) => {
+              {newUsersLatest.map((curElem, index) => {
                 return (
                   <>
-                    <div className="accordion-title">
-                      <div onClick={() => filterItem(curElem, users)}>
-                        {curElem}
+                    <div
+                      className={"teamMain "+
+                          (cur_section == curElem[0].team ? "active" : "")
+                        }
+                      onClick={() => activeClass(curElem)}>
+                      <div className="teamNameMain">
+                        <div className="teamName">{curElem[0].team}</div>
+                        <div className="teamIcon">+</div>
                       </div>
-                      <div>+</div>
+                      <div
+                        className={
+                          "teamDataMain " +
+                          (cur_section == curElem[0].team ? "active" : '')
+                        }>
+                        {curElem.map((newLoop) => {
+                          return (
+                            <>
+                            <div className="teamDataMain-inner">
+                              <div className={`teamData ${newLoop.status}`}>
+                                <div className="teamMemberName">
+                                  {newLoop.name}
+                                </div>
+                                <div className="teamMemberTitle">
+                                  {newLoop.title}
+                                </div>
+                              </div>
+                              </div>
+                            </>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </>
-                );
-              })}
-              {newUsers.map((curElem) => {
-                const { name, title, team, status } = curElem;
-                return (
-                  <>
-                    <div className="accordion-content">{name}</div>
                   </>
                 );
               })}
