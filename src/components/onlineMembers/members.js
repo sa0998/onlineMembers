@@ -3,6 +3,7 @@ import GithubUsers from "./membersCard";
 
 const UseEffectAPI = () => {
   const [usersLatest, setUsersLatest] = useState([]);
+  const [usersError, setUsersError] = useState("");
 
   const getUsers = async () => {
     try {
@@ -26,9 +27,13 @@ const UseEffectAPI = () => {
         teamUsers.push(newUsers);
       }
       setUsersLatest(teamUsers);
-    } catch (error) {
+    }
+    catch (error) {
+      var newError;
+      newError = error
       console.log("my error is " + error);
     }
+    setUsersError(newError);
   };
 
   const MINUTE_MS = 5000;
@@ -45,7 +50,7 @@ const UseEffectAPI = () => {
 
   return (
     <>
-      <GithubUsers newUsersLatest={usersLatest} />
+      <GithubUsers newUsersLatest={usersLatest} usersNewError = {usersError} />
     </>
   );
 };

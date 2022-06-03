@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
-const GithubUsers = ({ newUsersLatest }) => {
+const GithubUsers = ({ newUsersLatest,usersNewError }) => {
   const [cur_section, setCurSection] = useState("Niagara Kings");
 
   const activeClass = (team) =>{
@@ -15,7 +15,8 @@ const GithubUsers = ({ newUsersLatest }) => {
         <div className="row text-center">
           <div className="accordion">
             <div className="accordion-item">
-              {newUsersLatest.map((curElem, index) => {
+              {(usersNewError !== '' ?
+                newUsersLatest.map((curElem, index) => {
                 return (
                   <>
                     <div
@@ -52,7 +53,7 @@ const GithubUsers = ({ newUsersLatest }) => {
                     </div>
                   </>
                 );
-              })}
+              }) :'Thier is some error in the source' )}
             </div>
           </div>
         </div>
