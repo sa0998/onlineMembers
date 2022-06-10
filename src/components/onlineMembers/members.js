@@ -49,9 +49,9 @@ const UseEffectAPI = () => {
   }, []);
 
   return (
-    <>
-      <GithubUsers newUsersLatest={usersLatest} usersNewError = {usersError} />
-    </>
+    <div>
+    <GithubUsers newUsersLatest={usersLatest} usersNewError = {usersError} />
+    </div>
   );
 };
 
