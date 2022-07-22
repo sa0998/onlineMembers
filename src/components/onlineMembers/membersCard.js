@@ -12,6 +12,7 @@ const GithubUsers = ({ newUsersLatest,usersNewError }) => {
   return (
     <div>
       <div className="container-fluid mt-5">
+      <h3> test</h3>
         <div className="row text-center">
           <div className="accordion">
             <div className="accordion-item">
